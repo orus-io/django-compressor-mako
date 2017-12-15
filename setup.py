@@ -9,7 +9,7 @@ def long_description():
 
 setup(
     name='django_compressor_mako',
-    version='0.0.6',
+    version='1.0.0',
     description='Mako template support for django_compressor',
     long_description=long_description(),
     url='http://github.com/orus-io/django-compressor-mako',
@@ -18,7 +18,7 @@ setup(
     license='MIT',
     packages=['django_compressor_mako'],
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
