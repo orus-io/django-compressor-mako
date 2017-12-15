@@ -1,6 +1,15 @@
 Django Compressor Mako
 ======================
 
+.. image:: https://codecov.io/gh/orus-io/django-compressor-mako/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/orus-io/django-compressor-mako
+
+.. image:: https://travis-ci.org/orus-io/django-compressor-mako.svg?branch=master
+    :target: https://travis-ci.org/orus-io/django-compressor-mako
+
+.. image:: https://img.shields.io/pypi/v/django_compressor_mako.svg
+    :target: https://pypi.python.org/pypi/django_compressor_mako
+
 This module provide `Django Compressor <c>`_ support for `mako template <m>`_.
 
 Usage
