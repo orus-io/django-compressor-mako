@@ -1,7 +1,7 @@
 Django Compressor Mako
 =====================
 
-This module provide `Django Compressor`_ support for `mako template`_.
+This module provide `Django Compressor <c>`_ support for `mako template <m>`_.
 
 Usage
 =====
@@ -55,5 +55,5 @@ which one is used, eg.:
     <script type="text/javascript" src="/static/js/script.js">
     </%compress:js>
 
-.. _Django Compressor: https://github.com/django-compressor/django-compressor
-.. _mako template: http://www.makotemplates.org/
+.. _c: https://github.com/django-compressor/django-compressor
+.. _m: http://www.makotemplates.org/

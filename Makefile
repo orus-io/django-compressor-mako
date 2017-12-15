@@ -17,4 +17,7 @@ coveragereport:
 
 test: flake8 runtests coveragereport
 
+dist:
+	python setup.py sdist upload
+
 .PHONY: test runtests flake8 coveragereport

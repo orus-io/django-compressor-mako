@@ -11,7 +11,7 @@ def read(*parts):
 
 setup(
     name='django_compressor_mako',
-    version='0.0.1',
+    version='0.0.2',
     description='Mako template support for django_compressor',
     long_description=read('README.rst'),
     url='http://github.com/orus-io/django-compressor-mako',
@@ -20,7 +20,7 @@ setup(
     license='MIT',
     packages=['django_compressor_mako'],
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 4 - Beta',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
