@@ -17,7 +17,11 @@ coveragereport:
 
 test: flake8 runtests coveragereport
 
-dist:
+check:
+	pip install docutils Pygments
+	python setup.py check --restructuredtext -s
+
+pypi:
 	python setup.py sdist upload
 
 .PHONY: test runtests flake8 coveragereport

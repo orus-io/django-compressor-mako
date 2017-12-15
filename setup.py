@@ -1,19 +1,17 @@
 from setuptools import setup
-import os
 import codecs
 
 
-def read(*parts):
-    filename = os.path.join(os.path.dirname(__file__), *parts)
-    with codecs.open(filename, encoding='utf-8') as f:
+def long_description():
+    with codecs.open('README.rst', encoding='utf-8') as f:
         return f.read()
 
 
 setup(
     name='django_compressor_mako',
-    version='0.0.2',
+    version='0.0.5',
     description='Mako template support for django_compressor',
-    long_description=read('README.rst'),
+    long_description=long_description(),
     url='http://github.com/orus-io/django-compressor-mako',
     author='Steeve Chailloux',
     author_email='steeve.chailloux@orus.io',

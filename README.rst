@@ -1,5 +1,5 @@
 Django Compressor Mako
-=====================
+======================
 
 This module provide `Django Compressor <c>`_ support for `mako template <m>`_.
 
