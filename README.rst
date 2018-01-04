@@ -26,7 +26,8 @@ syntax:
     <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
     </%compress:compress>
 
-All django-compressor arguments are supported but must be explicitly named:
+Almost all django-compressor arguments are supported but must be explicitly
+named:
 
 * ``kind``: mandatory, "css" or "js".
 * ``mode``: optional, compressor mode, "file" or "inline".
@@ -49,7 +50,7 @@ Offline compression
 -------------------
 
 In order to use offline compression you must first create cached compressed
-files and the manifest using ``python ./manage.py compress_mako``.
+files and manifest using ``python ./manage.py compress_mako``.
 
 Shorter functions
 -----------------
