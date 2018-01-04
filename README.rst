@@ -45,6 +45,12 @@ means **you cannot use the following syntax**:
     <%block name="more_css"/>
     </%compress:compress>
 
+Offline compression
+-------------------
+
+In order to use offline compression you must first create cached compressed
+files and the manifest using ``python ./manage.py compress_mako``.
+
 Shorter functions
 -----------------
 

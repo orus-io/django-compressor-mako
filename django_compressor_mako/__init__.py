@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from mako.runtime import supports_caller
+from django.test.utils import override_settings
 from compressor.templatetags.compress import compress as compressor
+from compressor.exceptions import OfflineGenerationError
+from compressor.cache import (
+    get_offline_hexdigest, write_offline_manifest, get_offline_manifest)
 
 
 class NodeMock(object):
@@ -31,6 +35,11 @@ class TokenMock(object):
         return self.args
 
 
+@override_settings(COMPRESS_OFFLINE=False)
+def offline_compress(parser, token, context):
+    return compressor(parser, token).render(context)
+
+
 def _compress(context, **kwargs):
     try:
         # Those arguments are mandatory to parse template fragment
@@ -39,6 +48,7 @@ def _compress(context, **kwargs):
         caller = context['caller']
     except KeyError:
         return ''
+    # print('||>>>', dict(context))
 
     parser = ParserMock(capture(caller.body))
 
@@ -53,7 +63,20 @@ def _compress(context, **kwargs):
         raise NotImplementedError('"name" is not supported')
 
     token = TokenMock(*args)
-    return compressor(parser, token).render({})
+
+    try:
+        return compressor(parser, token).render({})
+    except OfflineGenerationError:
+        # we prefer doing a try except rather than an if for performance issue
+        key = get_offline_hexdigest(parser.body)
+        offline_manifest = get_offline_manifest()
+        if key not in offline_manifest:
+            print('compressing:\n\n{}\n'.format(parser.body.strip()))
+            compressed = offline_compress(parser, token, {})
+            offline_manifest[key] = compressed
+            write_offline_manifest(offline_manifest)
+            print('compressed:\n\tkey: {}\n\thtml: {}\n'.format(
+                key, compressed))
 
 
 @supports_caller
