@@ -9,7 +9,7 @@ def long_description():
 
 setup(
     name='django_compressor_mako',
-    version='1.0.1',
+    version='1.1.0',
     description='Mako template support for django_compressor',
     long_description=long_description(),
     url='http://github.com/orus-io/django-compressor-mako',
