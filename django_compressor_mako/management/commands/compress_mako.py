@@ -6,6 +6,7 @@ from fnmatch import fnmatch
 from importlib import import_module
 
 from django.core.management.base import BaseCommand, CommandError
+from django.conf import settings as dj_settings
 from django.utils import six
 from django.utils.encoding import smart_text
 from django.template.loader import get_template  # noqa Leave this in to preload template locations
@@ -28,6 +29,13 @@ else:
         from StringIO import StringIO
 
 
+def error_handler(*args, **kwargs):
+    '''Bypass all errors during compression'''
+    # Critical error like FileNotFoundError will still be raised
+    # but database connection error or TypeError will be catched
+    return True
+
+
 class Command(BaseCommand):
     help = "Compress content outside of the request/response cycle"
 
@@ -48,10 +56,18 @@ class Command(BaseCommand):
             for e in engines.all() if e.__class__.__name__ == 'MakoBackend']
 
     def __get_parser(self):
-
-        return [
+        engine = [
             e for e in engines.all() if e.__class__.__name__ == 'MakoBackend'
         ][0]
+
+        # hijack template options to set custom error handler
+        for ts in dj_settings.TEMPLATES:
+            if 'mako' in ts['BACKEND']:
+                ts['APP_DIRS'] = ts.get('APP_DIRS', False)
+                ts.pop('BACKEND')
+                ts['OPTIONS']['error_handler'] = error_handler
+                engine.__init__(ts)
+        return engine
 
     def compress(self, log=None, **options):
         """
